@@ -70,7 +70,7 @@ public:
   // Extensions::Common::Tap::ExtensionConfig
   void clearTapConfig() override;
   const std::string& adminId() override;
-  void newTapConfig(envoy::service::tap::v2alpha::TapConfig&& proto_config,
+  void newTapConfig(envoy::service::tap::v2alpha::TapConfig&& proto_connuig,
                     Extensions::Common::Tap::Sink* admin_streamer) override;
 
 private:

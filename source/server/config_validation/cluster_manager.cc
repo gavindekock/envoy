@@ -5,16 +5,6 @@
 namespace Envoy {
 namespace Upstream {
 
-ValidationClusterManagerFactory::ValidationClusterManagerFactory(
-    Runtime::Loader& runtime, Stats::Store& stats, ThreadLocal::Instance& tls,
-    Runtime::RandomGenerator& random, Network::DnsResolverSharedPtr dns_resolver,
-    Ssl::ContextManager& ssl_context_manager, Event::Dispatcher& main_thread_dispatcher,
-    const LocalInfo::LocalInfo& local_info, Secret::SecretManager& secret_manager, Api::Api& api,
-    Http::Context& http_context)
-    : ProdClusterManagerFactory(runtime, stats, tls, random, dns_resolver, ssl_context_manager,
-                                main_thread_dispatcher, local_info, secret_manager, api,
-                                http_context) {}
-
 ClusterManagerPtr ValidationClusterManagerFactory::clusterManagerFromProto(
     const envoy::config::bootstrap::v2::Bootstrap& bootstrap, Stats::Store& stats,
     ThreadLocal::Instance& tls, Runtime::Loader& runtime, Runtime::RandomGenerator& random,

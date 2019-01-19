@@ -63,7 +63,7 @@ public:
                                   bool added_via_api) -> ClusterSharedPtr {
           return ClusterImplBase::create(
               cluster, cm, stats_, tls_, dns_resolver_, ssl_context_manager_, runtime_, random_,
-              dispatcher_, log_manager, local_info_, outlier_event_logger, added_via_api);
+              dispatcher_, log_manager, local_info_, admin_, outlier_event_logger, added_via_api);
         }));
   }
 
@@ -126,6 +126,7 @@ public:
   Extensions::TransportSockets::Tls::ContextManagerImpl ssl_context_manager_{
       dispatcher_.timeSystem()};
   NiceMock<LocalInfo::MockLocalInfo> local_info_;
+  NiceMock<Server::MockAdmin> admin_;
   NiceMock<Secret::MockSecretManager> secret_manager_;
 };
 

@@ -304,24 +304,34 @@ class ClusterInfoFactory {
 public:
   virtual ~ClusterInfoFactory() {}
 
+  struct CreateClusterInfoParams {
+    Server::Admin& admin_;
+    Runtime::Loader& runtime_;
+    const envoy::api::v2::Cluster& cluster_;
+    const envoy::api::v2::core::BindConfig& bind_config_;
+    Stats::Store& stats_;
+    Ssl::ContextManager& ssl_context_manager_;
+    const bool added_via_api_;
+    ClusterManager& cm_;
+    const LocalInfo::LocalInfo& local_info_;
+    Event::Dispatcher& dispatcher_;
+    Runtime::RandomGenerator& random_;
+  };
+
   /**
    * This method returns a Upstream::ClusterInfoConstSharedPtr
    *
+   * fixfix
    * @param runtime supplies the runtime loader.
    * @param cluster supplies the owning cluster.
    * @param bind_config supplies information on binding newly established connections.
    * @param stats supplies a store for all known counters, gauges, and timers.
    * @param ssl_context_manager supplies a manager for all SSL contexts.
-   * @param secret_manager supplies a manager for static secrets.
    * @param added_via_api denotes whether this was added via API.
    * @return Upstream::ClusterInfoConstSharedPtr
    */
   virtual Upstream::ClusterInfoConstSharedPtr
-  createClusterInfo(Runtime::Loader& runtime, const envoy::api::v2::Cluster& cluster,
-                    const envoy::api::v2::core::BindConfig& bind_config, Stats::Store& stats,
-                    Ssl::ContextManager& ssl_context_manager, bool added_via_api,
-                    ClusterManager& cm, const LocalInfo::LocalInfo& local_info,
-                    Event::Dispatcher& dispatcher, Runtime::RandomGenerator& random) PURE;
+  createClusterInfo(const CreateClusterInfoParams& params) PURE;
 };
 
 } // namespace Upstream

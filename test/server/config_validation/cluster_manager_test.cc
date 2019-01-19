@@ -39,7 +39,7 @@ TEST(ValidationClusterManagerTest, MockedMethods) {
   NiceMock<Server::MockAdmin> admin;
   Http::ContextImpl http_context;
 
-  ValidationClusterManagerFactory factory(runtime, stats_store, tls, random, dns_resolver,
+  ValidationClusterManagerFactory factory(admin, runtime, stats_store, tls, random, dns_resolver,
                                           ssl_context_manager, dispatcher, local_info,
                                           secret_manager, *api, http_context);
 

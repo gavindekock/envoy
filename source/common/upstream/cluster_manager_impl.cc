@@ -1185,7 +1185,7 @@ ClusterSharedPtr ProdClusterManagerFactory::clusterFromProto(
     bool added_via_api) {
   return ClusterImplBase::create(cluster, cm, stats_, tls_, dns_resolver_, ssl_context_manager_,
                                  runtime_, random_, main_thread_dispatcher_, log_manager,
-                                 local_info_, outlier_event_logger, added_via_api);
+                                 local_info_, admin_, outlier_event_logger, added_via_api);
 }
 
 CdsApiPtr ProdClusterManagerFactory::createCds(const envoy::api::v2::core::ConfigSource& cds_config,
